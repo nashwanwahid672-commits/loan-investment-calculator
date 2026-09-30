@@ -16,7 +16,7 @@ A Python command-line tool for calculating loan payments, amortization schedules
 Requires Python 3.8 or newer.
 
 ```
-git clone https://github.com/YOUR-USERNAME/finance-calculator.git
+git clone https://github.com/nashwanwahid672-commits/finance-calculator.git
 cd finance-calculator
 pip install -r requirements.txt
 ```
@@ -69,7 +69,7 @@ Run `python main.py --help` for the full list.
 
 ## How it works
 
-The monthly loan payment uses the standard amortization formula:
+The monthly loan payment es the standard amortization formula:
 
 ```
 payment = P * r / (1 - (1 + r) ** -n)
@@ -77,7 +77,7 @@ payment = P * r / (1 - (1 + r) ** -n)
 
 where `P` is the loan amount, `r` is the monthly interest rate (annual rate / 12), and `n` is the total number of monthly payments.
 
-Investment growth uses monthly compounding with contributions made at the end of each month:
+Investment growth es monthly compounding with contributions made at the end of each month:
 
 ```
 FV = P * (1 + r) ** n + C * ((1 + r) ** n - 1) / r
