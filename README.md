@@ -1,12 +1,13 @@
 # Finance Calculator
 
-A Python command-line tool for calculating loan payments, amortization schedules, and investment growth.
+A Python command-line tool for calculating loan payments, amortization schedules, and investment growth, with CSV export.
 
 ## Features
 
 - **Loan calculator:** monthly payment, total interest, and total cost for a fixed-rate loan
 - **Amortization schedule:** a month-by-month breakdown of interest, principal, and remaining balance
 - **Investment projections:** compound growth with optional monthly contributions
+- **CSV export:** save amortization schedules and yearly investment balances to a file
 - **Growth chart:** optional matplotlib chart of investment growth over time
 - **Input validation:** clear error messages for invalid values
 - **Unit tests** with pytest
@@ -51,60 +52,37 @@ Growth earned:    $46,718.38
 
 Add `--plot` to show a growth chart (requires matplotlib).
 
+### Saving results to CSV
+
+Add `--output` with a filename to either command:
+
+```
+python main.py loan --amount 10000 --rate 6 --years 1 --output schedule.csv
+python main.py invest --amount 1000 --rate 6 --years 3 --monthly 200 --output growth.csv
+```
+
+The loan command saves one row per month:
+
+```
+month,payment,interest,principal,balance
+1,860.66,50.0,810.66,9189.34
+2,860.66,45.95,814.72,8374.62
+```
+
+The invest command saves one row per year:
+
+```
+year,balance
+1,3528.79
+2,6213.55
+3,9063.9
+```
+
+The files open in Excel, Google Sheets, or any spreadsheet program.
+
 ### Options
 
-| Command  | Option       | Description                          |
-|----------|--------------|--------------------------------------|
-| `loan`   | `--amount`   | Loan amount                          |
-| `loan`   | `--rate`     | Annual interest rate (%)             |
-| `loan`   | `--years`    | Loan term in years                   |
-| `loan`   | `--schedule` | Print the amortization schedule      |
-| `invest` | `--amount`   | Starting amount (default 0)          |
-| `invest` | `--rate`     | Expected annual return (%)           |
-| `invest` | `--years`    | Years to invest                      |
-| `invest` | `--monthly`  | Monthly contribution (default 0)     |
-| `invest` | `--plot`     | Show a growth chart                  |
-
-Run `python main.py --help` for the full list.
-
-## How it works
-
-The monthly loan payment es the standard amortization formula:
-
-```
-payment = P * r / (1 - (1 + r) ** -n)
-```
-
-where `P` is the loan amount, `r` is the monthly interest rate (annual rate / 12), and `n` is the total number of monthly payments.
-
-Investment growth es monthly compounding with contributions made at the end of each month:
-
-```
-FV = P * (1 + r) ** n + C * ((1 + r) ** n - 1) / r
-```
-
-where `C` is the monthly contribution.
-
-## Project structure
-
-```
-finance-calculator/
-├── finance.py        # core calculations (no input or output)
-├── main.py           # command-line interface
-├── requirements.txt
-└── tests/
-    └── test_finance.py
-```
-
-## Running the tests
-
-```
-pytest
-```
-
-## Limitations
-
-- Interest compounds monthly. Canadian fixed-rate mortgages typically compound semi-annually, so results will differ slightly from a bank's calculator.
-- Assumes a fixed interest rate and fixed payments.
-- Does not account for taxes, fees, or inflation.
-- Investment projections are illustrative only and are not financial advice.
+| Command  | Option       | Description                                  |
+|----------|--------------|----------------------------------------------|
+| `loan`   | `--amount`   | Loan amount                                  |
+| `loan`   | `--rate`     | Annual interest rate (%)
