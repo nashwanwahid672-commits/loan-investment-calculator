@@ -1,10 +1,8 @@
-"""Core financial calculations: loan payments, amortization, and investment growth.
-
-All functions are pure (no printing or input), which makes them easy to test.
-"""
+"""Core financial calculations: loan payments, amortization, and investment growth."""
 
 
 def _validate(principal, annual_rate, years):
+    """raise value error if inputs are invalid"""
     if principal <= 0:
         raise ValueError("principal must be greater than 0")
     if annual_rate < 0:
