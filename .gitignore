@@ -1,9 +1,16 @@
+# Python
 __pycache__/
 .pytest_cache/
-schedule.csv
-growth.csv
+
+# Virtual environments
 .venv/
 venv/
+
+# Editor and OS files
 .vscode/
 .idea/
 .DS_Store
+
+# Generated output
+schedule.csv
+growth.csv
